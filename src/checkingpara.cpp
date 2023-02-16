@@ -30,7 +30,7 @@ public:
     {
         this->n = 0;
     }
-    char get_arr(int i)
+    char get_arr_element(int i)
     {
         return arr[i];
     }
@@ -169,10 +169,32 @@ bool cmp(pair<string, int> &a,
     return a.second < b.second;
 }
 
-void draw_bar(vector<int> &value)
+// void draw_bar(vector<int> &value)
+// {
+//     plt::bar(value);
+//     plt::show();
+// }
+void draw_line(vector<int> &value, int &no_of_block)
 {
-    plt::bar(value);
+    vector<int> x;
+    for (int i = 1; i <= no_of_block; i++)
+    {
+        x.push_back(i);
+    }
+    plt::figure();
+    plt::plot(x,value,"r*",{{"label","line"}});
+    plt::xlabel("Code Block");
+    plt::ylabel("Length of Code Block");
+    plt::title("code block analysis");
+    plt::legend();
     plt::show();
+}
+void convert_map_to_vector(map<string, int> &M, vector<int> &value)
+{
+    for (auto &it : M)
+    {
+        value.push_back(it.second);
+    }
 }
 
 // Function to sort the map according
@@ -195,6 +217,7 @@ void sort_length(map<string, int> &M)
     sort(A.begin(), A.end(), cmp);
 
     // Print the sorted value
+    cout<<endl<<"After sorting:"<<endl;
     for (auto &it : A)
     {
 
@@ -202,10 +225,12 @@ void sort_length(map<string, int> &M)
              << it.second << endl;
         value.push_back(it.second);
     }
+    cout<<endl<<A[A.size()-1].first<<" is the longest code block with  "<<A[A.size()-1].second<<" lines"<<endl;
+
     
-    draw_bar(value);
+    // draw_bar(value);
 }
-void create_map_of_codeblock(string expr, map<string, int> &length_of_codeblock)
+void create_map_of_codeblock(string expr, map<string, int> &length_of_codeblock, int &no_of_block)
 {
     Stack<char> temp;
     Stack<int> line_of_bracket;
@@ -229,9 +254,10 @@ void create_map_of_codeblock(string expr, map<string, int> &length_of_codeblock)
         }
         else if ((temp.top() == '{' && expr[i] == '}'))
 
-        {
+        {   
+            no_of_block++;
             int length_codeblock = line - line_of_bracket.top();
-            string name = "Block " + to_string(line_of_bracket.top()) + '-' + to_string(line + 1) + ':';
+            string name = "Block "+to_string(no_of_block) +'('+ to_string(line_of_bracket.top()) + '-' + to_string(line + 1)+')' + ':';
             length_of_codeblock.insert(pair<string, int>(name, length_codeblock));
             temp.pop();
             line_of_bracket.pop();
@@ -245,17 +271,26 @@ void create_map_of_codeblock(string expr, map<string, int> &length_of_codeblock)
             }
         }
     }
+    cout<<"Before sorting: "<<endl;
+    for (auto &it : length_of_codeblock)
+    {
+        cout << it.first << ' '
+             << it.second << endl;
+    }
+    vector<int> value;
+    convert_map_to_vector(length_of_codeblock, value);
+    draw_line(value,no_of_block);
 }
-void find_the_longest_codeblock(string expr, map<string, int> &length_of_codeblock)
+void find_the_longest_codeblock(string expr, map<string, int> &length_of_codeblock,int &no_of_block)
 {
-    create_map_of_codeblock(expr, length_of_codeblock);
+    create_map_of_codeblock(expr, length_of_codeblock,no_of_block);
     sort_length(length_of_codeblock);
 }
 
 int main(int argc, char *argv[])
 {
     ifstream file(argv[1]);
-
+    int no_of_block = 0;
     cout << argv[1] << " ";
     string expr = cpp_to_string(file);
     map<string, int> length_of_codeblock;
@@ -266,7 +301,7 @@ int main(int argc, char *argv[])
     {
         cout << "Balanced" << endl;
 
-        find_the_longest_codeblock(expr, length_of_codeblock);
+        find_the_longest_codeblock(expr, length_of_codeblock,no_of_block);
     }
     else
         cout << endl
