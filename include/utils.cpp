@@ -2,6 +2,7 @@
 #include <Stack.cpp>
 #include "matplotlibcpp.h"
 
+
 namespace plt = matplotlibcpp;
 using namespace std;
 #define _USE_MATH_DEFINES
@@ -18,18 +19,15 @@ bool contains(list<T> &listofElements, const T &element)
 
 bool areBracketsBalanced(string expr)
 {
-
     Stack<char> temp;
     Stack<int> line_of_bracket;
     int line = 0;
-
     for (int i = 0; i < expr.length(); i++)
     {
         if (expr[i] == '\n')
         {
             line++;
         }
-
         if (temp.IsEmpty())
         {
             if (contains(list_para, expr[i]))
@@ -38,9 +36,10 @@ bool areBracketsBalanced(string expr)
                 line_of_bracket.push(line + 1);
             }
         }
-        else if ((temp.top() == '(' && expr[i] == ')') || (temp.top() == '{' && expr[i] == '}') || (temp.top() == '[' && expr[i] == ']'))
+        else if ((temp.top() == '(' && expr[i] == ')') 
+        || (temp.top() == '{' && expr[i] == '}') 
+        || (temp.top() == '[' && expr[i] == ']'))
         {
-
             temp.pop();
             line_of_bracket.pop();
         }
@@ -52,11 +51,7 @@ bool areBracketsBalanced(string expr)
                 line_of_bracket.push(line + 1);
             }
         }
-        // temp.show();
-
-        // cout << endl;
     }
-
     if (temp.IsEmpty())
     {
         // If stack is empty return true
@@ -64,7 +59,6 @@ bool areBracketsBalanced(string expr)
     }
     else
     {
-
         cout << "The program has not yet balanced the brackets. Check the brackets in the following lines" << endl;
         temp.show();
         cout << endl;
@@ -127,35 +121,28 @@ void convert_map_to_vector(map<string, int> &M, vector<int> &value)
 // to value in a (key-value) pairs
 void sort_length(map<string, int> &M)
 {
-
     // Declare vector of pairs
     vector<pair<string, int>> A;
     vector<int> value;
-
     // Copy key-value pair from Map
     // to vector of pairs
     for (auto &it : M)
     {
         A.push_back(it);
     }
-
     // Sort using comparator function
     sort(A.begin(), A.end(), cmp);
-
     // Print the sorted value
     cout << endl
          << "After sorting:" << endl;
     for (auto &it : A)
     {
-
         cout << it.first << ' '
              << it.second << endl;
         value.push_back(it.second);
     }
     cout << endl
          << A[A.size() - 1].first << " is the longest code block with  " << A[A.size() - 1].second << " lines" << endl;
-
-    // draw_bar(value);
 }
 void create_map_of_codeblock(string expr, map<string, int> &length_of_codeblock, int &no_of_block)
 {
@@ -213,3 +200,29 @@ void find_the_longest_codeblock(string expr, map<string, int> &length_of_codeblo
     create_map_of_codeblock(expr, length_of_codeblock, no_of_block);
     sort_length(length_of_codeblock);
 }
+int longestValidParentheses(string s) {
+        string temp;
+        for(int i=0;i<s.size();i++){
+            if (contains(list_para, s[i]))
+            {
+                temp+=s[i];
+            }
+        }
+        Stack<int> stk;
+        stk.push(-1);
+        int maxL=0;
+        for(int i=0;i<temp.size();i++)
+        {
+            
+            int t=stk.top();
+            if(t!=-1&&(temp[i]=='}'&&temp[t]=='{'|| temp[i]==')'&&temp[t]=='('|| temp[i]==']'&&temp[t]=='['))
+            {
+                stk.pop();
+                maxL=max(maxL,i-stk.top());
+            }
+            else
+                
+                stk.push(i);
+        }
+        return maxL;
+    }

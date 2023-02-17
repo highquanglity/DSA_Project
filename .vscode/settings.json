@@ -10,6 +10,13 @@
         "array": "cpp",
         "type_traits": "cpp",
         "variant": "cpp",
-        "version": "cpp"
+        "version": "cpp",
+        "forward_list": "cpp",
+        "list": "cpp",
+        "regex": "cpp",
+        "algorithm": "cpp",
+        "iterator": "cpp",
+        "iosfwd": "cpp",
+        "fstream": "cpp"
     }
 }

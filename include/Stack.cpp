@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-#define N 1000
+#define N 10000
 
 template <class T>
 class Stack
@@ -10,53 +10,53 @@ private:
     unsigned int n;
 
 public:
-    Stack()
+    Stack() //Khởi tạo Stack
     {
         this->n = 0;
     }
-    char get_arr_element(int i)
+    T get_arr_element(int i) //Trả về phần tử thứ i của mảng
     {
         return arr[i];
     }
-    int size()
+    int size() //Trả về số phần tử của Stack
     {
         return this->n;
     }
-    bool IsEmpty()
+    bool IsEmpty() //Kiểm tra Stack có rỗng hay không
     {
         if (n == 0)
             return true;
         else
             return false;
     }
-    bool IsFull()
+    bool IsFull() //Kiểm tra Stack có đầy hay không
     {
         if (n == N)
             return true;
         else
             return false;
     }
-    void push(T k)
+    void push(T k) //Thêm phần tử k vào Stack
     {
         if (IsFull())
             return;
         arr[n] = k;
         n++;
     }
-    T pop()
+    T pop() //Xóa phần tử ở đỉnh của Stack
     {
         if (IsEmpty())
             return 0;
         n--;
         return arr[n];
     }
-    T top()
+    T top() //Trả về phần tử ở đỉnh của Stack
     {
         if (IsEmpty())
             return 0;
         return arr[n - 1];
     }
-    void show()
+    void show() //Hiển thị Stack
     {
         if (IsEmpty())
             return;

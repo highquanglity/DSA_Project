@@ -2,7 +2,7 @@
 using namespace std;
 
 int main(
-    ofstream myfile("./1.cpp");
+    ofstream myfile("./1.cpp";
     if(myfile.is_open()){
         myfile<<"hello world";
         myfile.close();
