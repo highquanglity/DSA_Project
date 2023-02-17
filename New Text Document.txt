@@ -9,3 +9,5 @@ g++ src\main.cpp -std=c++11 -I C:\Python310\include -I include -I C:\Python310\L
 g++ main.cpp -std=c++11 -I C:/Users/Quang Nghiem/AppData/Local/Programs/Python/Python310/include -I C:/Users/Quang Nghiem/AppData/Local/Programs/Python/Python310/Lib/site-packages/numpy/core/include -L C:/Users/Quang Nghiem/AppData/Local/Programs/Python/Python310/libs -lpython310
 
 g++ src\checkingpara.cpp -o src\checkingpara.exe -std=c++11 -I C:\Python310\include -I include -I C:\Python310\Lib\site-packages\numpy\core\include -L C:\Python310\libs -lpython310
+
+g++ src\checkingpara.cpp -o src\checkingpara.exe -std=c++11 -I C:\Users\user\AppData\Local\Programs\Python\Python310\include -I include -I C:\Users\user\AppData\Local\Programs\Python\Python310\Lib\site-packages\numpy\core\include -L C:\Users\user\AppData\Local\Programs\Python\Python310\libs -lpython310
