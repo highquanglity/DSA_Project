@@ -1,0 +1,15 @@
+{
+    "files.associations": {
+        "barrier": "cpp",
+        "*.tcc": "cpp",
+        "compare": "cpp",
+        "random": "cpp",
+        "mutex": "cpp",
+        "numeric": "cpp",
+        "ratio": "cpp",
+        "array": "cpp",
+        "type_traits": "cpp",
+        "variant": "cpp",
+        "version": "cpp"
+    }
+}
