@@ -170,7 +170,7 @@ void create_map_of_codeblock(string expr, map<string, int> &length_of_codeblock,
 
         {
             no_of_block++;
-            int length_codeblock = line - line_of_bracket.top();
+            int length_codeblock = (line+1) - line_of_bracket.top();
             string name = "Block " + to_string(no_of_block) + '(' + to_string(line_of_bracket.top()) + '-' + to_string(line + 1) + ')' + ':';
             length_of_codeblock.insert(pair<string, int>(name, length_codeblock));
             temp.pop();
@@ -231,7 +231,7 @@ void longestValidParentheses(string s) {
                 temp+=s[i];
             }
         }
-        cout<<endl<<"The brackets included in the program: "<<temp;
+        
         Stack<int> stk;
         stk.push(-1);
         int maxL=0;

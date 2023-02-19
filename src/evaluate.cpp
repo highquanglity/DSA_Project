@@ -26,12 +26,24 @@ int main(int argc, char *argv[])
 
         // cout << argv[1] << " ";
         string expr = cpp_to_string(file);
+        string temp;
+        for (int i = 0; i < expr.size(); i++)
+        {
+            if (contains(list_para, expr[i]))
+            {
+                temp += expr[i];
+            }
+        }
+        cout << endl
+             << "The brackets included in the program: " << temp << endl;
+
         map<string, int> length_of_codeblock;
         // cout << endl
         //     << expr;
 
         if (areBracketsBalanced(expr))
         {
+
             cout << "Balanced" << endl;
 
             find_the_longest_codeblock(expr, length_of_codeblock, no_of_block);

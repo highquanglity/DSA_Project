@@ -11,10 +11,10 @@ int main()
         cout<<"Creating file: "<<name<<"--------"<<endl;
         ofstream MyFile(name);
 
-        // Write to the file
-        MyFile << "int main() {\n}";
+        // // Write to the file
+        MyFile << "";
 
-        // Close the file
+        // // Close the file
         MyFile.close();
         
     }
