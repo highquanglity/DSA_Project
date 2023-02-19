@@ -89,11 +89,11 @@ bool cmp(pair<string, int> &a,
     return a.second < b.second;
 }
 
-// void draw_bar(vector<int> &value)
-// {
-//     plt::bar(value);
-//     plt::show();
-// }
+void draw_bar(vector<int> &value)
+{
+    plt::bar(value);
+    plt::show();
+}
 void draw_line(vector<int> &value, int &no_of_block)
 {
     vector<int> x;
@@ -191,16 +191,39 @@ void create_map_of_codeblock(string expr, map<string, int> &length_of_codeblock,
         cout << it.first << ' '
              << it.second << endl;
     }
-    vector<int> value;
-    convert_map_to_vector(length_of_codeblock, value);
-    draw_line(value, no_of_block);
+   
 }
-void find_the_longest_codeblock(string expr, map<string, int> &length_of_codeblock, int &no_of_block)
+void draw(vector<int> &value, int &no_of_block,string argv)
+{
+    if (argv == "0")
+    {
+        cout<<"";
+    }
+    if (argv == "1")
+    {
+        draw_line(value, no_of_block);
+    }
+    if (argv == "2")
+    {
+        draw_bar(value);
+    }
+   
+   
+}
+void find_the_longest_codeblock(string expr, map<string, int> &length_of_codeblock, int &no_of_block, string argv="0")
 {
     create_map_of_codeblock(expr, length_of_codeblock, no_of_block);
+    vector<int> value;
+    convert_map_to_vector(length_of_codeblock, value);
+    draw(value, no_of_block, argv);
     sort_length(length_of_codeblock);
+    
+    
+    
+    
+   
 }
-int longestValidParentheses(string s) {
+void longestValidParentheses(string s) {
         string temp;
         for(int i=0;i<s.size();i++){
             if (contains(list_para, s[i]))
@@ -208,6 +231,7 @@ int longestValidParentheses(string s) {
                 temp+=s[i];
             }
         }
+        cout<<endl<<"The brackets included in the program: "<<temp;
         Stack<int> stk;
         stk.push(-1);
         int maxL=0;
@@ -224,5 +248,5 @@ int longestValidParentheses(string s) {
                 
                 stk.push(i);
         }
-        return maxL;
+        cout << endl<<"The longest Valid Parentheses is: "<< maxL<<endl;
     }

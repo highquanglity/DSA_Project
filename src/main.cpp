@@ -24,11 +24,11 @@ int main(int argc, char *argv[])
     {
         cout << "Balanced" << endl;
 
-        find_the_longest_codeblock(expr, length_of_codeblock, no_of_block);
+        find_the_longest_codeblock(expr, length_of_codeblock, no_of_block,argv[2]);
     }
     else
-        cout << endl<<"The longest Valid Parentheses is: "<<longestValidParentheses(expr) << endl
-             << "Please fix the error in your file and try again";
-
+        {   longestValidParentheses(expr);
+            cout << "Please fix the error in your file and try again"<<endl;
+    }
     return 0;
 }
